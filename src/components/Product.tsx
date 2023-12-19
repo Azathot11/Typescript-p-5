@@ -1,3 +1,10 @@
+
+import {addToCart} from "../store/card-slice.ts";
+import {useCartDispatch} from "../store/hooks.ts";
+
+
+
+
 type ProductProps = {
   id: string;
   image: string;
@@ -7,12 +14,18 @@ type ProductProps = {
 };
 
 export default function Product({
+    id,
   image,
   title,
   price,
   description,
 }: ProductProps) {
-  function handleAddToCart() {}
+  const dispatch = useCartDispatch();
+
+
+  function handleAddToCart() {
+    dispatch(addToCart({id: id, title: title, price: price}));
+  }
 
   return (
     <article className="product">
